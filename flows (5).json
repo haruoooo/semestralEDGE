@@ -1,0 +1,232 @@
+[
+    {
+        "id": "317121f05fde5765",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4df850f8487c0b4d",
+        "type": "mqtt in",
+        "z": "317121f05fde5765",
+        "name": "",
+        "topic": "haruo/FreqCard",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "13515c2548c9b8a1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "c5851e7d88108f0b"
+            ]
+        ]
+    },
+    {
+        "id": "1f23a20077be084b",
+        "type": "debug",
+        "z": "317121f05fde5765",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "ac6bc71d54ee1de0",
+        "type": "mqtt in",
+        "z": "317121f05fde5765",
+        "name": "",
+        "topic": "haruo/PresSis",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "13515c2548c9b8a1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "be07a60a57982c4b"
+            ]
+        ]
+    },
+    {
+        "id": "3b359ab1a3ed15a9",
+        "type": "mqtt in",
+        "z": "317121f05fde5765",
+        "name": "",
+        "topic": "haruo/PresDia",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "13515c2548c9b8a1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 220,
+        "wires": [
+            [
+                "c1f11e0953762b9a"
+            ]
+        ]
+    },
+    {
+        "id": "c5851e7d88108f0b",
+        "type": "function",
+        "z": "317121f05fde5765",
+        "name": "function 13",
+        "func": "var m1 = {\n    payload:\n    {\n        \"variable\": \"FreqCard\",\n        \"unit\": \"BPM\",\n        \"value\": msg.payload\n    }\n}\n\nreturn m1;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "629459bd5195b609",
+                "1f23a20077be084b"
+            ]
+        ]
+    },
+    {
+        "id": "be07a60a57982c4b",
+        "type": "function",
+        "z": "317121f05fde5765",
+        "name": "function 14",
+        "func": "var m1 = {\n    payload:\n    {\n        \"variable\": \"PresSis\",\n        \"unit\": \"mmHg\",\n        \"value\": msg.payload\n    }\n}\n\nreturn m1;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 160,
+        "wires": [
+            [
+                "629459bd5195b609",
+                "1f23a20077be084b"
+            ]
+        ]
+    },
+    {
+        "id": "c1f11e0953762b9a",
+        "type": "function",
+        "z": "317121f05fde5765",
+        "name": "function 15",
+        "func": "var m1 = {\n    payload:\n    {\n        \"variable\": \"PresDia\",\n        \"unit\": \"mmHg\",\n        \"value\": msg.payload\n    }\n}\n\nreturn m1;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 220,
+        "wires": [
+            [
+                "629459bd5195b609",
+                "1f23a20077be084b"
+            ]
+        ]
+    },
+    {
+        "id": "629459bd5195b609",
+        "type": "mqtt out",
+        "z": "317121f05fde5765",
+        "name": "Teste",
+        "topic": "tago/data/post",
+        "qos": "1",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c5fbde6304311bf7",
+        "x": 630,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "13515c2548c9b8a1",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c5fbde6304311bf7",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt.tago.io",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
